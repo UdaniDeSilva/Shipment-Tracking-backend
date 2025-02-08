@@ -67,13 +67,13 @@ public class ShipmentController {
     }
 
     // **Reschedule shipment delivery**
-    @PutMapping("/{shipmentId}/reschedule")
+    @PutMapping("/{trackingId}/reschedule")
     public ResponseEntity<Shipment> rescheduleShipment(
-            @PathVariable Long shipmentId,
+            @PathVariable String trackingId,
             @RequestBody Map<String, String> rescheduleData) {
         String newDate = rescheduleData.get("newDate");
         String instructions = rescheduleData.get("instructions");
-        Shipment updatedShipment = shipmentService.rescheduleShipment(shipmentId, newDate, instructions);
+        Shipment updatedShipment = shipmentService.rescheduleShipment(trackingId, newDate, instructions);
         return ResponseEntity.ok(updatedShipment);
     }
 }
